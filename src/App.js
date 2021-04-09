@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import NewSurvey from './components/newSurvey';
 
 function App() {
   const [survey, setSurvey] = useState({});
@@ -26,6 +27,7 @@ function App() {
   return (
     <div >
       Olen kyselypalvelu.
+      <NewSurvey/>
     </div>
   );
 }
