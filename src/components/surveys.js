@@ -20,8 +20,8 @@ function Surveys() {
       const json = await response.json();
 
       console.log(json)
-
       setSurvey(json);
+      console.log(survey[0].questions);
     }
     catch {
       console.log('Error while fetching surveys.')
@@ -36,26 +36,16 @@ function Surveys() {
   const giveAnswer = (e) => {
     e.preventDefault();
     setAllanswers(allanswers.push(answer));
-    console.log(allanswers)
     setAnswer('');
   }
 
+  
   return (
     <div>
       <button onClick={() => fetch_url()} >Hae surveys</button>
       <div>
-        {survey.map(e => {
-          return (
-            <p key={e.id}>
-              amount: {e.amount}<br></br>
-                id: {e.id}<br></br>
-                name: {e.name}<br></br>
-                questions : {e.questions}<br></br>
-                status:{ e.status}<br></br>
-            </p>
+       
 
-          );
-        })}
       </div>
 
       <form>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import Surveys from './components/surveys';
 
 function App() {
@@ -27,6 +26,7 @@ function App() {
   return (
     <div >
       <Surveys/>
+      
     </div>
   );
 }
