@@ -46,13 +46,24 @@ function Surveys() {
       <div>
         {survey.map(e => {
           return (
-            <p key={e.id}>
+            <div key={e.id}>
               amount: {e.amount}<br></br>
                 id: {e.id}<br></br>
                 name: {e.name}<br></br>
-                questions : {e.questions}<br></br>
+                questions :
+              {e.questions.map(q => {
+                return (
+                  <div key={q.questionId}>
+                    <p>Question id: {q.questionId}</p>
+                    <p>Question type: {q.type}</p>
+                    <p>Question text: {q.quetext}</p>
+                    <p>Question required?: {q.required}</p>
+                  </div>
+                );
+              })}
+              <br></br>
                 status:{ e.status}<br></br>
-            </p>
+            </div>
 
           );
         })}
