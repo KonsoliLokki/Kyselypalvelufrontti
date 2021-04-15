@@ -44,7 +44,30 @@ function Surveys() {
     <div>
       <button onClick={() => fetch_url()} >Hae surveys</button>
       <div>
+<<<<<<< HEAD
        
+=======
+        {survey.map(e => {
+          return (
+            <div key={e.id}>
+              amount: {e.amount}<br></br>
+                id: {e.id}<br></br>
+                name: {e.name}<br></br>
+                questions :
+              {e.questions.map(q => {
+                return (
+                  <div key={q.questionId}>
+                    <p>Question id: {q.questionId}</p>
+                    <p>Question type: {q.type}</p>
+                    <p>Question text: {q.quetext}</p>
+                    <p>Question required?: {q.required}</p>
+                  </div>
+                );
+              })}
+              <br></br>
+                status:{ e.status}<br></br>
+            </div>
+>>>>>>> 7789e07bf8f3aa9420697c3d8bfdc4b0ee247fca
 
       </div>
 
