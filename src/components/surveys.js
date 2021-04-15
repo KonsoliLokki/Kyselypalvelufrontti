@@ -39,14 +39,11 @@ function Surveys() {
     setAnswer('');
   }
 
-  
+
   return (
     <div>
       <button onClick={() => fetch_url()} >Hae surveys</button>
       <div>
-<<<<<<< HEAD
-       
-=======
         {survey.map(e => {
           return (
             <div key={e.id}>
@@ -67,8 +64,8 @@ function Surveys() {
               <br></br>
                 status:{ e.status}<br></br>
             </div>
->>>>>>> 7789e07bf8f3aa9420697c3d8bfdc4b0ee247fca
-
+          )
+        })}
       </div>
 
       <form>
