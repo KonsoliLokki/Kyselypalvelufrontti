@@ -10,7 +10,7 @@ function Surveys() {
     id: ''
   });
 
- 
+
   const [allanswers, setAllanswers] = useState({
     answertext: ''
   });
@@ -25,8 +25,8 @@ function Surveys() {
       const json = await response.json();
 
       setSurvey(json);
-     
-    
+
+
     }
     catch {
       console.log('Error while fetching surveys.')
@@ -35,53 +35,40 @@ function Surveys() {
   }
 
   const returnAnswer = (e) => {
-    
-    setAllanswers({[e.target.name]:e.target.value});
+
+    setAllanswers({ [e.target.name]: e.target.value });
   }
 
   const giveAnswer = (e) => {
     e.preventDefault();
-    setAllanswers({...allanswers, [e.target.name]: e.target.value} );
-   // setOlioanswer(olioanswer.push(allanswers));
-    setAllanswers({answertext: ''});
-   
+    setAllanswers({ ...allanswers, [e.target.name]: e.target.value });
+    // setOlioanswer(olioanswer.push(allanswers));
+    setAllanswers({ answertext: '' });
+
     console.log(allanswers)
-       console.log(olioanswer);
-   
+    console.log(olioanswer);
+
   }
 
 
   return (
     <div>
- 
+
       <button onClick={() => fetch_url()} >Hae surveys</button>
-    
+
       <div>
-          amount: {survey.amount}<br></br>
-          id: {survey.id}<br></br>
-          name: {survey.name}<br></br>
-          questions :
-          {survey.questions.map(q => {
+        <h1>{survey.name}</h1>
+        {survey.questions.map(q => {
           return (
             <div key={q.questionId}>
-              <p>Question id: {q.questionId}</p>
-              <p>Question type: {q.type}</p>
-              <p>Question text: {q.quetext}</p>
-              <p>Question required?: {q.required}</p>
-              <input type='text' name={'answertext'+q.questionId} value={allanswers.answertext} onChange={(e) => returnAnswer(e)}></input><br></br>
-                    <button onClick={(e) => giveAnswer(e)}>Give answer</button>
+              <p>Kysymys: {q.quetext}{q.required ? '***' : ''}</p>
+              <input type='text' name={'answertext' + q.questionId} value={allanswers.answertext} onChange={(e) => returnAnswer(e)}></input><br></br>
+              <button onClick={(e) => giveAnswer(e)}>Give answer</button>
             </div>
           );
         })}
-        </div>
-
-          
-            
-        
-       
- </div>
-
-    
+      </div>
+    </div>
   )
 }
 
