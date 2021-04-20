@@ -14,7 +14,9 @@ function Surveys() {
   const [allanswers, setAllanswers] = useState({
     answertext: ''
   });
-  const [olioanswer, setOlioanswer] = ([]);
+  const [olioanswer, setOlioanswer] = useState([]);
+
+  console.log(olioanswer)
 
   const survey_id = '1';
   const url = `https://survey-task.herokuapp.com/surveys/${survey_id}`;
@@ -42,7 +44,7 @@ function Surveys() {
   const giveAnswer = (e) => {
     e.preventDefault();
     setAllanswers({ ...allanswers, [e.target.name]: e.target.value });
-    // setOlioanswer(olioanswer.push(allanswers));
+    setOlioanswer(olioanswer.concat(allanswers));
     setAllanswers({ answertext: '' });
 
     console.log(allanswers)
