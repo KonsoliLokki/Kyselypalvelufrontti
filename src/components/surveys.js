@@ -11,7 +11,9 @@ function Surveys() {
   }]);
 
   const [answer, setAnswer] = useState('');
-  const [allanswers, setAllanswers] = useState([]);
+  const [allanswers, setAllanswers] = useState({
+    answertext: ''
+  });
 
   const url = 'https://survey-task.herokuapp.com/surveys';
 
@@ -20,7 +22,6 @@ function Surveys() {
       const response = await fetch(url)
       const json = await response.json();
 
-      console.log(json)
       setSurvey(json);
      
     }
@@ -31,13 +32,14 @@ function Surveys() {
   }
 
   const returnAnswer = (e) => {
-    setAnswer(e.target.value);
+    console.log(e.target.name);
+    setAllanswers({[e.target.name]:e.target.value});
   }
 
   const giveAnswer = (e) => {
     e.preventDefault();
-    setAllanswers(allanswers.concat(answer));
-    setAnswer('');
+    setAllanswers({...allanswers, [e.target.name]: e.target.value} );
+    setAllanswers('');
    
        console.log(allanswers)
    
@@ -57,6 +59,8 @@ function Surveys() {
                 return (
                   <div key={q.questionId}>
                     <p>Question text: {q.quetext}</p>
+                    <input type='text' name={'answertext'+q.questionId} value={allanswers.answertext} onChange={(e) => returnAnswer(e)}></input><br></br>
+                    <button onClick={(e) => giveAnswer(e)}>Give answer</button>
                     
                   </div>
                 );
@@ -68,13 +72,8 @@ function Surveys() {
         })}
       </div>
 
-      <form>
-        <label htmlFor='answer'>Answer to Question </label>
-        <input type='text' name='answer' value={answer} onChange={(e) => returnAnswer(e)} /> <br></br>
-        <button onClick={(e) => giveAnswer(e)}>Give answer</button>
-      </form>
+      
 
-<SendAnswer allanswers= {allanswers}/>
     </div>
   )
 }
