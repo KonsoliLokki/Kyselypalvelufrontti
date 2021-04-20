@@ -42,11 +42,11 @@ function Surveys() {
   const giveAnswer = (e) => {
     e.preventDefault();
     setAllanswers({...allanswers, [e.target.name]: e.target.value} );
-   // setOlioanswer(olioanswer.push(allanswers));
+    setOlioanswer(olioanswer.push(allanswers));
     setAllanswers({answertext: ''});
    
     console.log(allanswers)
-       console.log(olioanswer);
+    console.log(olioanswer);
    
   }
 
