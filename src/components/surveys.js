@@ -45,28 +45,24 @@ function Surveys() {
     <div>
       <button onClick={() => fetch_url()} >Hae surveys</button>
       <div>
-        {survey.map(e => {
+        <div>
+          amount: {survey.amount}<br></br>
+          id: {survey.id}<br></br>
+          name: {survey.name}<br></br>
+          questions :
+          {survey.questions.map(q => {
           return (
-            <div key={e.id}>
-              amount: {e.amount}<br></br>
-                id: {e.id}<br></br>
-                name: {e.name}<br></br>
-                questions :
-              {e.questions.map(q => {
-                return (
-                  <div key={q.questionId}>
-                    <p>Question id: {q.questionId}</p>
-                    <p>Question type: {q.type}</p>
-                    <p>Question text: {q.quetext}</p>
-                    <p>Question required?: {q.required}</p>
-                  </div>
-                );
-              })}
-              <br></br>
-                status:{ e.status}<br></br>
+            <div key={q.questionId}>
+              <p>Question id: {q.questionId}</p>
+              <p>Question type: {q.type}</p>
+              <p>Question text: {q.quetext}</p>
+              <p>Question required?: {q.required}</p>
             </div>
-          )
+          );
         })}
+          <br></br>
+                status:{survey.status}<br></br>
+        </div>
       </div>
 
       <form>
