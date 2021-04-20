@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Surveys from './components/surveys';
+import Surveys from './components/Surveys';
 
 function App() {
   const [survey, setSurvey] = useState({});

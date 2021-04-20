@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SendAnswer from './SendAnswers';
 
 function Surveys() {
   const [survey, setSurvey] = useState([{
@@ -35,17 +36,36 @@ function Surveys() {
 
   const giveAnswer = (e) => {
     e.preventDefault();
-    setAllanswers(allanswers.push(answer));
+    setAllanswers(allanswers.concat(answer));
     setAnswer('');
+   
+       console.log(allanswers)
+   
   }
 
-  
+
   return (
     <div>
       <button onClick={() => fetch_url()} >Hae surveys</button>
       <div>
-       
-
+        {survey.map(e => {
+          return (
+            <div key={e.id}>
+                Survey: {e.name}<br></br><br></br>
+                questions :
+              {e.questions.map(q => {
+                return (
+                  <div key={q.questionId}>
+                    <p>Question text: {q.quetext}</p>
+                    
+                  </div>
+                );
+              })}
+              <br></br>
+                status:{ e.status}<br></br>
+            </div>
+          )
+        })}
       </div>
 
       <form>
@@ -53,6 +73,8 @@ function Surveys() {
         <input type='text' name='answer' value={answer} onChange={(e) => returnAnswer(e)} /> <br></br>
         <button onClick={(e) => giveAnswer(e)}>Give answer</button>
       </form>
+
+<SendAnswer allanswers= {allanswers}/>
     </div>
   )
 }
