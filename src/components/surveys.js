@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 
 function Surveys() {
-  const [survey, setSurvey] = useState([{
+  const [survey, setSurvey] = useState({
     name: '',
     amount: '',
     status: '',
     questions: [],
     id: ''
-  }]);
+  });
 
   const [answer, setAnswer] = useState('');
   const [allanswers, setAllanswers] = useState([]);
 
-  const url = 'https://survey-task.herokuapp.com/surveys';
+  const survey_id = '1';
+  const url = `https://survey-task.herokuapp.com/surveys/${survey_id}`;
 
   const fetch_url = async () => {
     try {
@@ -21,7 +22,7 @@ function Surveys() {
 
       console.log(json)
       setSurvey(json);
-      console.log(survey[0].questions);
+      console.log(survey.questions);
     }
     catch {
       console.log('Error while fetching surveys.')
