@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import SendAnswer from './SendAnswers';
+
 
 function Surveys() {
-  const [survey, setSurvey] = useState([{
+  const [survey, setSurvey] = useState({
     name: '',
     amount: '',
     status: '',
     questions: [],
     id: ''
-  }]);
+  });
 
-  const [answer, setAnswer] = useState('');
+ 
   const [allanswers, setAllanswers] = useState({
     answertext: ''
   });
+  const [olioanswer, setOlioanswer] = ([]);
 
-  const url = 'https://survey-task.herokuapp.com/surveys';
+  const survey_id = '1';
+  const url = `https://survey-task.herokuapp.com/surveys/${survey_id}`;
 
   const fetch_url = async () => {
     try {
@@ -24,6 +26,7 @@ function Surveys() {
 
       setSurvey(json);
      
+    
     }
     catch {
       console.log('Error while fetching surveys.')
@@ -32,49 +35,53 @@ function Surveys() {
   }
 
   const returnAnswer = (e) => {
-    console.log(e.target.name);
+    
     setAllanswers({[e.target.name]:e.target.value});
   }
 
   const giveAnswer = (e) => {
     e.preventDefault();
     setAllanswers({...allanswers, [e.target.name]: e.target.value} );
-    setAllanswers('');
+   // setOlioanswer(olioanswer.push(allanswers));
+    setAllanswers({answertext: ''});
    
-       console.log(allanswers)
+    console.log(allanswers)
+       console.log(olioanswer);
    
   }
 
 
   return (
     <div>
+ 
       <button onClick={() => fetch_url()} >Hae surveys</button>
+    
       <div>
-        {survey.map(e => {
+          amount: {survey.amount}<br></br>
+          id: {survey.id}<br></br>
+          name: {survey.name}<br></br>
+          questions :
+          {survey.questions.map(q => {
           return (
-            <div key={e.id}>
-                Survey: {e.name}<br></br><br></br>
-                questions :
-              {e.questions.map(q => {
-                return (
-                  <div key={q.questionId}>
-                    <p>Question text: {q.quetext}</p>
-                    <input type='text' name={'answertext'+q.questionId} value={allanswers.answertext} onChange={(e) => returnAnswer(e)}></input><br></br>
+            <div key={q.questionId}>
+              <p>Question id: {q.questionId}</p>
+              <p>Question type: {q.type}</p>
+              <p>Question text: {q.quetext}</p>
+              <p>Question required?: {q.required}</p>
+              <input type='text' name={'answertext'+q.questionId} value={allanswers.answertext} onChange={(e) => returnAnswer(e)}></input><br></br>
                     <button onClick={(e) => giveAnswer(e)}>Give answer</button>
-                    
-                  </div>
-                );
-              })}
-              <br></br>
-                status:{ e.status}<br></br>
             </div>
-          )
+          );
         })}
-      </div>
+        </div>
 
-      
+          
+            
+        
+       
+ </div>
 
-    </div>
+    
   )
 }
 
