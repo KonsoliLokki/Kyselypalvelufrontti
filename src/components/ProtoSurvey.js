@@ -25,20 +25,20 @@ Valitse toimipiste:
 Kysymykset:<br></br>
 1.Piditkö tämän päivän ruuista? <br></br>
 <div>
-  <input type="checkbox" id="scales" name="scales"/>
+  <input type="radio" id="scales" name="scales"/>
   <label for="scales">Maukasta!</label>
 </div>
 
 <div>
-  <input type="checkbox" id="horns" name="horns"/>
+  <input type="radio" id="horns" name="horns"/>
   <label for="horns">Hyvää</label>
 </div>
 <div>
-  <input type="checkbox" id="horns" name="horns"/>
+  <input type="radio" id="horns" name="horns"/>
   <label for="horns">Ihan ok</label>
 </div>
 <div>
-  <input type="checkbox" id="horns" name="horns"/>
+  <input type="radio" id="horns" name="horns"/>
   <label for="horns">Ei maistunut :(</label>
 </div>
 <br></br>
@@ -65,7 +65,29 @@ Kysymykset:<br></br>
     <option value="">--Valise vaihtoehdoista--</option>
     <option value="ei">Ei</option>
     <option value="kyllä">Kyllä</option>
-</select>
+</select> <br></br>
+6. Kun söin, otin seuraavat ruuat:
+<div>
+  <input type="checkbox" id="horns" name="horns"/>
+  <label for="usein">Alkuruoka</label>
+</div>
+<div>
+  <input type="checkbox" id="horns" name="horns"/>
+  <label for="joskus">Pääruoka</label>
+</div>
+<div>
+  <input type="checkbox" id="horns" name="horns"/>
+  <label for="harvoin">Jälkiruoka</label>
+</div>
+<div>
+  <input type="checkbox" id="horns" name="horns"/>
+  <label for="harvoin">Leipä</label>
+</div>
+<div>
+  <input type="checkbox" id="horns" name="horns"/>
+  <label for="harvoin">Salaatti</label>
+</div>
+<br></br>
 
   
         </div>
