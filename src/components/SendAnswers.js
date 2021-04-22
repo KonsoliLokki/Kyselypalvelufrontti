@@ -6,9 +6,8 @@ function SendAnswer(answers) {
 
   const sendAnswers = (e) => {
     e.preventDefault();
-    try {
-    
-
+   
+  
       axios
         .post('', answers)
         .then(function (response) {
@@ -17,9 +16,7 @@ function SendAnswer(answers) {
         .catch(function (error) {
           console.log(error);
         });
-    } catch (error) {
-      console.log("error post");
-    }
+    
  
   };
 
