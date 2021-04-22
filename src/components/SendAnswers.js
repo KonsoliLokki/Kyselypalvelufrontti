@@ -1,47 +1,33 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
-function SendAnswer(allanswers) {
+function SendAnswer(answers) {
+  console.log(answers);
 
+  const sendAnswers = (e) => {
+    e.preventDefault();
+    try {
+    
 
-    const sendAnswers = (e) => {
-
-        e.preventDefault();
-
-        if(allanswers.allanswers.length === 0){
-
-            const url = "";
-            axios.post(url, allanswers);
-        }
-
+      axios
+        .post('', answers)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log("error post");
     }
+ 
+  };
 
-
-
-
-console.log(allanswers.allanswers.length)
-if(allanswers.allanswers.length === 0) {
-
-    return(
-        <div>
-
-        </div>
-    )
-}
-
-else{
-    return(
-<div>
-{allanswers.allanswers.map (a => {
-    return(
-        <p key = {a}> {a}</p>
-    )
-})}
-</div>
-
-    )
-}
-
+  return (
+    <div>
+      <button onClick={(e) => sendAnswers(e)}> send answers as json </button>
+    </div>
+  );
 }
 
 export default SendAnswer;

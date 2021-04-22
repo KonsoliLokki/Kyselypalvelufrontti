@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import SendAnswers from './SendAnswers.js';
+import ProtoSurvey from './ProtoSurvey.js';
 
 function Surveys() {
   const [survey, setSurvey] = useState({
@@ -54,7 +55,7 @@ function Surveys() {
 
 
   return (
-    <div>
+    <div style= {{marginLeft: '100px'}}>
  
       <button onClick={() => fetch_url()} >Hae surveys</button>
     
@@ -78,8 +79,8 @@ function Surveys() {
         </div>
 
           
-            
-        
+           <SendAnswers answers = {olioanswer}/> 
+        <ProtoSurvey/>
        
  </div>
 
