@@ -70,9 +70,10 @@ function Surveys() {
               
               <p>Kysymys: {q.quetext}{q.required ? '***' : ''}</p>
               
+              <form>
               <input type='text' name={'answertext' + q.questionId} value={allanswers.answertext} onChange={(e) => returnAnswer(e)}/><br></br>
               <input type='submit' value='Lisää' onClick={(e) => giveAnswer(e)}/>
-              
+              </form>
             </div>
           );
         })}
