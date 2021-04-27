@@ -19,7 +19,7 @@ function Surveys() {
 
   const [olioanswer, setOlioanswer] = useState([]);
   
-  console.log(olioanswer)
+
 
   const survey_id = '1';
   const url = `https://survey-task.herokuapp.com/surveys/${survey_id}`;
