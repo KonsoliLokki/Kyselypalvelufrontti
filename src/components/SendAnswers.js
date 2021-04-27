@@ -9,7 +9,7 @@ function SendAnswer(answers) {
    
   
       axios
-        .post('', answers)
+        .post('https://survey-task.herokuapp.com/answers', answers)
         .then(function (response) {
           console.log(response);
         })
