@@ -2,31 +2,33 @@ import React from "react";
 import axios from "axios";
 
 function SendAnswer(answers) {
-  const sendAnswers = (e) => {
-    e.preventDefault();
 
-    const data = [
-      { ansText: "sauli niinistö" },
-      { ansText: "Matti meikäläinen" },
-    ];
+  const data = [
+    {
+      ansText: 'Testiiiiiiii',
+      question: {
+        questionId: 2
+      }
+    }
+  ]
 
-    console.log(JSON.stringify(data));
-
-    fetch("https://survey-task.herokuapp.com/answers", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
+  const sendAnswers = () => {
+    fetch('https://survey-task.herokuapp.com/answers',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-type': 'application/json' }
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
+      .then(response => {
+        if (response.ok) {
+          console.log('Success: Data sent')
+        }
+        else {
+          console.log('Error: Data sending failed')
+        }
+      })
+      .catch(err => console.error(err))
+  }
 
   return (
     <div>
