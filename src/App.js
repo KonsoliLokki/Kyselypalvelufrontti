@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Surveys from './components/Surveys';
 
 function App() {
