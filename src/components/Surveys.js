@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProtoSurvey from './ProtoSurvey.js';
+import Report from './Report.js';
 
 function Surveys() {
   const [survey, setSurvey] = useState({
@@ -89,6 +90,7 @@ function Surveys() {
       <button onClick={sendAnswers}>Lähetä vastaukset</button>
 
       <ProtoSurvey />
+      
     </div>
   )
 }
