@@ -5,12 +5,9 @@ function SendAnswer(answers) {
   const sendAnswers = (e) => {
     e.preventDefault();
 
-    const data = [
-      { ansText: "sauli niinistö" },
-      { ansText: "Matti meikäläinen" },
-    ];
+    const data = ['{"ansText": "Testiiiiiiii", "question": { "questionId": "2"} }'] ;
 
-    console.log(JSON.stringify(data));
+  
 
     fetch("https://survey-task.herokuapp.com/answers", {
       method: "POST", // or 'PUT'
@@ -21,10 +18,11 @@ function SendAnswer(answers) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+
+        console.log("jee","Success:", data);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error('oops!',"Error:", error);
       });
   };
 
