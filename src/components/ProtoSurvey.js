@@ -18,20 +18,20 @@ Kysymykset:<br></br>
 1.Piditkö tämän päivän ruuista? <br></br>
       <div>
         <input type="radio" id="scales" name="scales" />
-        <label for="scales">Maukasta!</label>
+        <label htmlFor="scales">Maukasta!</label>
       </div>
 
       <div>
         <input type="radio" id="horns" name="horns" />
-        <label for="horns">Hyvää</label>
+        <label htmlFor="horns">Hyvää</label>
       </div>
       <div>
         <input type="radio" id="horns" name="horns" />
-        <label for="horns">Ihan ok</label>
+        <label htmlFor="horns">Ihan ok</label>
       </div>
       <div>
         <input type="radio" id="horns" name="horns" />
-        <label for="horns">Ei maistunut :(</label>
+        <label htmlFor="horns">Ei maistunut :(</label>
       </div>
       <br></br>
 2.Mitä ruokaa toivoisit enemmän ja mistä et niin pidä?<br></br>
@@ -41,15 +41,15 @@ Kysymykset:<br></br>
 4.Kuinka usein syöt ruokalassa? <br></br>
       <div>
         <input type="radio" id="horns" name="horns" />
-        <label for="usein">3-5 kertaa/vko</label>
+        <label htmlFor="usein">3-5 kertaa/vko</label>
       </div>
       <div>
         <input type="radio" id="horns" name="horns" />
-        <label for="joskus">1-3 kertaa/vko</label>
+        <label htmlFor="joskus">1-3 kertaa/vko</label>
       </div>
       <div>
         <input type="radio" id="horns" name="horns" />
-        <label for="harvoin">harvemmin</label>
+        <label htmlFor="harvoin">harvemmin</label>
       </div>
       <br></br>
 5.Onko hinta laatusuhde mielestäsi sopiva?<br></br>
@@ -61,23 +61,23 @@ Kysymykset:<br></br>
 6. Kun söin, otin seuraavat ruuat:
       <div>
         <input type="checkbox" id="horns" name="horns" />
-        <label for="usein">Alkuruoka</label>
+        <label htmlFor="usein">Alkuruoka</label>
       </div>
       <div>
         <input type="checkbox" id="horns" name="horns" />
-        <label for="joskus">Pääruoka</label>
+        <label htmlFor="joskus">Pääruoka</label>
       </div>
       <div>
         <input type="checkbox" id="horns" name="horns" />
-        <label for="harvoin">Jälkiruoka</label>
+        <label htmlFor="harvoin">Jälkiruoka</label>
       </div>
       <div>
         <input type="checkbox" id="horns" name="horns" />
-        <label for="harvoin">Leipä</label>
+        <label htmlFor="harvoin">Leipä</label>
       </div>
       <div>
         <input type="checkbox" id="horns" name="horns" />
-        <label for="harvoin">Salaatti</label>
+        <label htmlFor="harvoin">Salaatti</label>
       </div>
       <br></br>
 
