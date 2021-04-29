@@ -10,7 +10,10 @@ function Surveys() {
     id: ''
   });
   const [answers, setAnswers] = useState([]);
-  const [answer, setAnswer] = useState([]);
+  const [answer, setAnswer] = useState([{
+    ansText: ''
+  }]);
+
 
   // Fetch options
   const survey_id = '1';
@@ -32,8 +35,9 @@ function Surveys() {
   // Handle input values in answer fields
   const handleChange = (e) => {
     // Set input field value as answer text
+   
     setAnswer({
-      [e.target.name]: e.target.value,
+      ansText: e.target.value,
       question: {
         questionId: e.target.id
       }
@@ -44,13 +48,21 @@ function Surveys() {
     e.preventDefault();
 
     setAnswers(answers.concat(answer));
-    setAnswer([]);
+    setAnswer([{
+      ansText: '',
+      question: {
+        questionId: ''
+      }
+    }]);
 
-    console.log(answer)
-    console.log(answers);
+    
+  
   }
 
+
+  console.log(answers)
   const sendAnswers = () => {
+
     fetch('https://survey-task.herokuapp.com/answers',
       {
         method: 'POST',
@@ -84,12 +96,11 @@ function Surveys() {
               <form>
                 <input
                   type="text"
-                  name={'ansText-' + q.questionId}
                   id={q.questionId}
                   value={answer.ansText}
                   onChange={(e) => handleChange(e)}
                 />
-                <input type='submit' value='Lisää' onClick={e => giveAnswer(e)} />
+                <input type='submit' value='Vastaa' onClick={e => giveAnswer(e)} />
               </form>
             </div>
           );
