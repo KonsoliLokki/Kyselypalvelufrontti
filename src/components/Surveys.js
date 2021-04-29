@@ -35,21 +35,18 @@ function Surveys() {
   }
 
   // Handle input values in answer fields
-  const handleChange = (e) => {
+  const handleChange = (e, questionId, index) => {
     let newArr = [...answer]; // copying the old datas array
-    newArr[e.target.id] = { [e.target.name]: e.target.value };
+    newArr[index] = { [e.target.name]: e.target.value, question: { questionId: questionId } };
 
     setAnswer(newArr);
   }
 
   const sendAnswers = () => {
-    setAnswers(answers.concat(answer));
-    setAnswer([]);
-
     fetch('https://survey-task.herokuapp.com/answers',
       {
         method: 'POST',
-        body: JSON.stringify(answers),
+        body: JSON.stringify(answer),
         headers: { 'Content-type': 'application/json' }
       })
       .then(response => {
@@ -80,9 +77,8 @@ function Surveys() {
                 <input
                   type="text"
                   name="ansText"
-                  id={q.questionId}
                   value={answer.ansText}
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => handleChange(e, q.questionId, index)}
                 />
               </form>
             </div>
