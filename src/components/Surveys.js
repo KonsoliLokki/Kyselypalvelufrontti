@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SendAnswers from './SendAnswers.js';
 import ProtoSurvey from './ProtoSurvey.js';
 
 function Surveys() {
