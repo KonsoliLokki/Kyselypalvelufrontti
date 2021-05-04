@@ -9,11 +9,12 @@ function Surveys() {
     questions: [],
     id: ''
   });
-  const [answers, setAnswers] = useState([]);
-  const [answer, setAnswer] = useState([{
-    ansText: ''
+  const [answers, setAnswers] = useState([{
+    ansText: '',
+    question: {
+      questionId: ''
+    }
   }]);
-
 
   // Fetch options
   const survey_id = '1';
@@ -33,34 +34,15 @@ function Surveys() {
   }
 
   // Handle input values in answer fields
-  const handleChange = (e) => {
-    // Set input field value as answer text
-   
-    setAnswer({
-      ansText: e.target.value,
-      question: {
-        questionId: e.target.id
-      }
-    });
-  }
+  const handleChange = (e, questionId, index) => {
+    let newArr = [...answers]; // copying the old datas array
+    newArr[index] = { [e.target.name]: e.target.value, question: { questionId: questionId } };
 
-  const giveAnswer = (e) => {
-    e.preventDefault();
-
-    setAnswers(answers.concat(answer));
-    setAnswer([{
-      ansText: '',
-      question: {
-        questionId: ''
-      }
-    }]);
-
-    
-  
+    setAnswers(newArr);
   }
 
 
-  console.log(answers)
+
   const sendAnswers = () => {
 
     fetch('https://survey-task.herokuapp.com/answers',
@@ -87,7 +69,7 @@ function Surveys() {
 
       <div>
         <h1>{survey.name}</h1>
-        {survey.questions.map(q => {
+        {survey.questions.map((q, index) => {
           return (
             <div key={q.questionId} >
 
@@ -96,11 +78,10 @@ function Surveys() {
               <form>
                 <input
                   type="text"
-                  id={q.questionId}
-                  value={answer.ansText}
-                  onChange={(e) => handleChange(e)}
+                  name="ansText"
+                  value={answers.ansText}
+                  onChange={(e) => handleChange(e, q.questionId, index)}
                 />
-                <input type='submit' value='Vastaa' onClick={e => giveAnswer(e)} />
               </form>
             </div>
           );
