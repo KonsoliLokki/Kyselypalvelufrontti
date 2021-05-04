@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ProtoSurvey from './ProtoSurvey.js';
+import Button from '@material-ui/core/Button';
 
 function Surveys() {
   const [survey, setSurvey] = useState({
@@ -15,6 +15,8 @@ function Surveys() {
       questionId: ''
     }
   }]);
+  // Set 'send answers' button visibility
+  const [isShown, setIsShown] = useState(false)
 
   // Fetch options
   const survey_id = '1';
@@ -27,6 +29,8 @@ function Surveys() {
       const json = await response.json();
 
       setSurvey(json);
+      // Set 'send answers' button to visible
+      setIsShown(true);
     }
     catch {
       console.error('Error while fetching surveys.')
@@ -63,9 +67,11 @@ function Surveys() {
   }
 
   return (
-    <div style={{ marginLeft: 50, marginTop: 50 }}>
+    <div>
 
-      <button type='button' onClick={() => fetch_url()} >Hae surveys</button>
+      <Button onClick={() => fetch_url()} variant="contained" color="primary">
+        Hae kysely
+      </Button>
 
       <div>
         <h1>{survey.name}</h1>
@@ -88,9 +94,15 @@ function Surveys() {
         })}
       </div>
 
-      <button onClick={sendAnswers}>Lähetä vastaukset</button>
+      <Button
+        onClick={sendAnswers}
+        variant="contained"
+        color="secondary"
+        style={{ marginTop: 30, display: isShown ? 'block' : 'none' }}
+      >
+        Lähetä vastaukset
+      </Button>
 
-      <ProtoSurvey />
     </div>
   )
 }
