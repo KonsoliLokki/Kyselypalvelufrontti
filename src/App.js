@@ -8,6 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 
 import './App.css';
+import Report from './components/Report';
 
 function App() {
   const [value, setValue] = useState('survey');
@@ -33,7 +34,7 @@ function App() {
       <div className="page-content">
         {value === 'survey' && <Surveys />}
         {value === 'prototype' && <ProtoSurvey />}
-        {value === 'report' && <div>Tulossa pian</div>}
+        {value === 'report' && <Report />}
       </div>
     </div>
   );
