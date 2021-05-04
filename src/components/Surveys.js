@@ -76,7 +76,7 @@ function Surveys() {
           return (
             <div key={q.questionId} >
 
-              <p>Kysymys: {q.quetext}<span style={{ color: 'red' }} >{q.required ? '*' : ''}</span></p>
+              <p>Kysymys: {q.quetext} {console.log(q.questiontype.typename)} {console.log(survey.questions.length)}<span style={{ color: 'red' }} >{q.required ? '*' : ''}</span></p>
 
               <form>
                 <input
