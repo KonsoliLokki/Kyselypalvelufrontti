@@ -20,7 +20,7 @@ function Report() {
 
   const survey_id = '1';
   const surveyUrl = `https://survey-task.herokuapp.com/surveys/${survey_id}`;
-  const answersUrl = `http://localhost:8080/answers`;
+  const answersUrl = `https://survey-task.herokuapp.com/answers/`;
 
   useEffect(() => {
     fetchSurveyAndQuestions();

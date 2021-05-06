@@ -22,6 +22,7 @@ function Surveys() {
   const survey_id = '1';
   const url = `https://survey-task.herokuapp.com/surveys/${survey_id}`;
 
+
   // Get survey
   const fetch_url = async () => {
     try {
@@ -49,6 +50,7 @@ function Surveys() {
 
   const sendAnswers = () => {
 
+    console.log(answers)
     fetch('https://survey-task.herokuapp.com/answers',
       {
         method: 'POST',
@@ -64,6 +66,21 @@ function Surveys() {
         }
       })
       .catch(err => console.error(err))
+
+      setAnswers([{
+        ansText: '',
+        question: {
+          questionId: ''
+        }
+      }]);
+
+      setSurvey({
+        name: '',
+        amount: '',
+        status: '',
+        questions: [],
+        id: ''
+      }); 
   }
 
   return (
