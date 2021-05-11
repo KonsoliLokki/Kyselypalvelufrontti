@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 
 function Surveys() {
@@ -8,16 +8,15 @@ function Surveys() {
     amount: '',
     status: '',
     questions: [],
-    choices: [],
     id: ''
-  });
+  })
 
   const [answers, setAnswers] = useState([{
     ansText: '',
     question: {
       questionId: ''
     }
-  }]);
+  }])
 
   // Set 'send answers' button visibility
   const [isShown, setIsShown] = useState(false)
@@ -48,7 +47,6 @@ function Surveys() {
 
     setAnswers(newArr)
   }
-
 
   const sendAnswers = () => {
 
@@ -87,15 +85,49 @@ function Surveys() {
 
   const QuestionHandle = () => {
 
-    return(
+    let questionsToRender
+    let choicesToRender
+
+    questionsToRender = survey.questions.map((question, i) => {
+      return <div key={question.questionId}>
+
+              {<p>Kysymys: {question.quetext} 
+              <span style={{ color: 'red' }} >{question.required ? '*' : ''}</span>
+              </p>}
+
+            </div>
+    })
+
+    choicesToRender = survey.questions.map((choiceObj, i) => {
+      return (<div key={i}>
+                {
+                  choiceObj.choices.map(choiceIndex => {
+                    return (<div key={choiceIndex.choiceId}>
+                              {/* <input type="radio" value={choiceIndex.choiceText} name="ansText" onChange={(e) => handleChange(e, choiceIndex.choiceId, i)} /> {choiceIndex.choiceText} */}
+                            </div>)
+                }
+              )}
+            </div>)
+    })
+    
+
+  return (<div>
+      
+        <h1>{survey.name}</h1>
+
+        {questionsToRender}
+
+        {choicesToRender}
+
+        </div>)
+
+    /* return(
       <div>
         <h1>{survey.name}</h1>
             {survey.questions.map((q, i) => {
 
               return (
                 <div key={q.questionId}>
-
-                  {console.log(q.questiontype.typename)} {console.log(survey.questions.length)}
 
                     <div>
                       {q.questiontype.typename === 'text' && 
@@ -122,8 +154,13 @@ function Surveys() {
               
             })}
     </div>
-    )
+    ) */
   }
+
+  useEffect(() => {
+    console.log("Input changed")
+    console.log(answers)
+  }, [answers])
 
   return (
     <div>
