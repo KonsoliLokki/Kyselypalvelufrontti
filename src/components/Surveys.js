@@ -2,32 +2,35 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 
 function Surveys() {
+
   const [survey, setSurvey] = useState({
     name: '',
     amount: '',
     status: '',
     questions: [],
+    choices: [],
     id: ''
   });
+
   const [answers, setAnswers] = useState([{
     ansText: '',
     question: {
       questionId: ''
     }
   }]);
+
   // Set 'send answers' button visibility
   const [isShown, setIsShown] = useState(false)
 
   // Fetch options
   const survey_id = '1';
-  const url = `https://survey-task.herokuapp.com/surveys/${survey_id}`;
-
+  const url = `https://survey-task.herokuapp.com/surveys/${survey_id}`
 
   // Get survey
   const fetch_url = async () => {
     try {
       const response = await fetch(url)
-      const json = await response.json();
+      const json = await response.json()
 
       setSurvey(json);
       // Set 'send answers' button to visible
@@ -41,11 +44,10 @@ function Surveys() {
   // Handle input values in answer fields
   const handleChange = (e, questionId, index) => {
     let newArr = [...answers]; // copying the old datas array
-    newArr[index] = { [e.target.name]: e.target.value, question: { questionId: questionId } };
+    newArr[index] = { [e.target.name]: e.target.value, question: { questionId: questionId } }
 
-    setAnswers(newArr);
+    setAnswers(newArr)
   }
-
 
 
   const sendAnswers = () => {
@@ -83,6 +85,46 @@ function Surveys() {
       }); 
   }
 
+  const QuestionHandle = () => {
+
+    return(
+      <div>
+        <h1>{survey.name}</h1>
+            {survey.questions.map((q, i) => {
+
+              return (
+                <div key={q.questionId}>
+
+                  {console.log(q.questiontype.typename)} {console.log(survey.questions.length)}
+
+                    <div>
+                      {q.questiontype.typename === 'text' && 
+                        <p>Kysymys: {q.quetext} {console.log("This is Q: ", q)} <span style={{ color: 'red' }} >{q.required ? '*' : ''}</span></p>
+                      }
+                      {q.questiontype.typename === 'radio' && 
+                        <div>
+                          
+                        </div>
+                      }
+
+                      <form>
+                        <input
+                          type="text"
+                          name="ansText"
+                          value={answers.ansText}
+                          onChange={(e) => handleChange(e, q.questionId, i)}
+                        />
+                      </form>
+
+                    </div>
+                </div>
+              )
+              
+            })}
+    </div>
+    )
+  }
+
   return (
     <div>
 
@@ -90,26 +132,7 @@ function Surveys() {
         Hae kysely
       </Button>
 
-      <div>
-        <h1>{survey.name}</h1>
-        {survey.questions.map((q, index) => {
-          return (
-            <div key={q.questionId} >
-
-              <p>Kysymys: {q.quetext} {console.log(q.questiontype.typename)} {console.log(survey.questions.length)}<span style={{ color: 'red' }} >{q.required ? '*' : ''}</span></p>
-
-              <form>
-                <input
-                  type="text"
-                  name="ansText"
-                  value={answers.ansText}
-                  onChange={(e) => handleChange(e, q.questionId, index)}
-                />
-              </form>
-            </div>
-          );
-        })}
-      </div>
+      <QuestionHandle/>
 
       <Button
         onClick={sendAnswers}
@@ -124,4 +147,4 @@ function Surveys() {
   )
 }
 
-export default Surveys;
+export default Surveys
