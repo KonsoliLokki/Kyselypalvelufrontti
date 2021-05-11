@@ -67,12 +67,6 @@ function Surveys() {
       })
       .catch(err => console.error(err))
 
-      setAnswers([{
-        ansText: '',
-        question: {
-          questionId: ''
-        }
-      }]);
 
       setSurvey({
         name: '',
@@ -81,6 +75,8 @@ function Surveys() {
         questions: [],
         id: ''
       }); 
+      
+      setIsShown(false);
   }
 
   const QuestionHandle = () => {
