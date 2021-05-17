@@ -19,6 +19,9 @@ function Surveys() {
     }
   }])
 
+  // Ei toimi useamman radio button kysymyksen kanssa atm
+  const [radioValue, setRadioValue] = useState('')
+
   // Set 'send answers' button visibility
   const [isShown, setIsShown] = useState(false)
 
@@ -43,11 +46,15 @@ function Surveys() {
   }
 
   // Handle input values in answer fields
-  const handleChange = (e, questionId, index) => {
+  const handleTextChange = (e, questionId, index) => {
     let newArr = [...answers]; // copying the old datas array
     newArr[index] = { [e.target.name]: e.target.value, question: { questionId: questionId } }
 
     setAnswers(newArr)
+  }
+
+  const handleRadioChange = (e) => {
+    setRadioValue(e.target.value)
   }
 
   const sendAnswers = () => {
@@ -81,85 +88,6 @@ function Surveys() {
     setIsShown(false);
   }
 
-  const QuestionHandle = () => {
-
-    let questionsToRender
-    let choicesToRender
-
-    questionsToRender = survey.questions.map((question, i) => {
-      return <div key={question.questionId}>
-
-        {<p>Kysymys: {question.quetext}
-          <span style={{ color: 'red' }} >{question.required ? '*' : ''}</span>
-        </p>}
-
-      </div>
-    })
-
-    choicesToRender = survey.questions.map((choiceObj, i) => {
-      return (<div key={i}>
-        {
-          choiceObj.choices.map(choiceIndex => {
-            return (<div key={choiceIndex.choiceId}>
-              {/* <input type="radio" value={choiceIndex.choiceText} name="ansText" onChange={(e) => handleChange(e, choiceIndex.choiceId, i)} /> {choiceIndex.choiceText} */}
-            </div>)
-          }
-          )}
-      </div>)
-    })
-
-
-    return (<div>
-
-      <h1>{survey.name}</h1>
-
-      {questionsToRender}
-
-      {choicesToRender}
-
-    </div>)
-
-    /* return(
-      <div>
-        <h1>{survey.name}</h1>
-            {survey.questions.map((q, i) => {
-
-              return (
-                <div key={q.questionId}>
-
-                    <div>
-                      {q.questiontype.typename === 'text' && 
-                        <p>Kysymys: {q.quetext} {console.log("This is Q: ", q)} <span style={{ color: 'red' }} >{q.required ? '*' : ''}</span></p>
-                      }
-                      {q.questiontype.typename === 'radio' && 
-                        <div>
-                          
-                        </div>
-                      }
-
-                      <form>
-                        <input
-                          type="text"
-                          name="ansText"
-                          value={answers.ansText}
-                          onChange={(e) => handleChange(e, q.questionId, i)}
-                        />
-                      </form>
-
-                    </div>
-                </div>
-              )
-              
-            })}
-    </div>
-    ) */
-  }
-
-  useEffect(() => {
-    console.log("Input changed")
-    console.log(answers)
-  }, [answers])
-
   return (
     <div>
 
@@ -167,7 +95,57 @@ function Surveys() {
         Hae kysely
       </Button>
 
-      <QuestionHandle />
+      <h1>{survey.name}</h1>
+
+      { // Map questions
+        survey.questions.map((question, index) => {
+          return (
+            <div key={question.questionId}>
+
+              <p>Kysymys: {question.quetext}
+                <span style={{ color: 'red' }} >{question.required ? '*' : ''}</span>
+              </p>
+
+              { // Display text input
+                question.questiontype.typename === 'text' &&
+
+                <form>
+                  <input
+                    type="text"
+                    name="ansText"
+                    value={answers.ansText}
+                    onChange={(e) => handleTextChange(e, question.questionId, index)}
+                  />
+                </form>
+              }
+
+              { // Display radio input
+                question.questiontype.typename === 'radio' &&
+
+                <form>
+                  { // Map question choices
+                    question.choices.map((choice) => {
+                      return (
+                        <div key={choice.choiceId}>
+                          <label >
+                            <input
+                              type="radio"
+                              value={choice.choiceText}
+                              checked={radioValue === choice.choiceText}
+                              onChange={(e) => handleRadioChange(e)}
+                            />
+                            {choice.choiceText}
+                          </label>
+                        </div>
+                      )
+                    })
+                  }
+                </form>
+              }
+            </div>
+          )
+        })
+      }
 
       <Button
         onClick={sendAnswers}
