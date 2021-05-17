@@ -68,15 +68,15 @@ function Surveys() {
       .catch(err => console.error(err))
 
 
-      setSurvey({
-        name: '',
-        amount: '',
-        status: '',
-        questions: [],
-        id: ''
-      }); 
-      
-      setIsShown(false);
+    setSurvey({
+      name: '',
+      amount: '',
+      status: '',
+      questions: [],
+      id: ''
+    });
+
+    setIsShown(false);
   }
 
   const QuestionHandle = () => {
@@ -87,35 +87,35 @@ function Surveys() {
     questionsToRender = survey.questions.map((question, i) => {
       return <div key={question.questionId}>
 
-              {<p>Kysymys: {question.quetext} 
-              <span style={{ color: 'red' }} >{question.required ? '*' : ''}</span>
-              </p>}
+        {<p>Kysymys: {question.quetext}
+          <span style={{ color: 'red' }} >{question.required ? '*' : ''}</span>
+        </p>}
 
-            </div>
+      </div>
     })
 
     choicesToRender = survey.questions.map((choiceObj, i) => {
       return (<div key={i}>
-                {
-                  choiceObj.choices.map(choiceIndex => {
-                    return (<div key={choiceIndex.choiceId}>
-                              {/* <input type="radio" value={choiceIndex.choiceText} name="ansText" onChange={(e) => handleChange(e, choiceIndex.choiceId, i)} /> {choiceIndex.choiceText} */}
-                            </div>)
-                }
-              )}
+        {
+          choiceObj.choices.map(choiceIndex => {
+            return (<div key={choiceIndex.choiceId}>
+              {/* <input type="radio" value={choiceIndex.choiceText} name="ansText" onChange={(e) => handleChange(e, choiceIndex.choiceId, i)} /> {choiceIndex.choiceText} */}
             </div>)
+          }
+          )}
+      </div>)
     })
-    
 
-  return (<div>
-      
-        <h1>{survey.name}</h1>
 
-        {questionsToRender}
+    return (<div>
 
-        {choicesToRender}
+      <h1>{survey.name}</h1>
 
-        </div>)
+      {questionsToRender}
+
+      {choicesToRender}
+
+    </div>)
 
     /* return(
       <div>
@@ -165,7 +165,7 @@ function Surveys() {
         Hae kysely
       </Button>
 
-      <QuestionHandle/>
+      <QuestionHandle />
 
       <Button
         onClick={sendAnswers}

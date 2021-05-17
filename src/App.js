@@ -6,6 +6,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 import './App.css';
 import Report from './components/Report';
@@ -19,23 +25,36 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar position="static" style={{ marginBottom: 20 }}>
-        <Toolbar>
-          <Typography variant="h6">
-            Kyselypalvelu
+      <Router>
+
+        <AppBar position="static" style={{ marginBottom: 20 }}>
+          <Toolbar>
+            <Typography variant="h6">
+              Kyselypalvelu
           </Typography>
-          <Tabs value={value} onChange={handleChange} className="links">
-            <Tab value="survey" label="Kysely" />
-            <Tab value="prototype" label="Prototyyppi" />
-            <Tab value="report" label="Raportti" />
-          </Tabs>
-        </Toolbar>
-      </AppBar>
-      <div className="page-content">
-        {value === 'survey' && <Surveys />}
-        {value === 'prototype' && <ProtoSurvey />}
-        {value === 'report' && <Report />}
-      </div>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Kysely</Link>
+                </li>
+                <li>
+                  <Link to="/prototyyppi">Prototyyppi</Link>
+                </li>
+                <li>
+                  <Link to="/raportti">Raportti</Link>
+                </li>
+              </ul>
+            </nav>
+          </Toolbar>
+        </AppBar>
+
+        <div className="page-content">
+          {value === 'survey' && <Surveys />}
+          {value === 'prototype' && <ProtoSurvey />}
+          {value === 'report' && <Report />}
+        </div>
+
+      </Router>
     </div>
   );
 }
