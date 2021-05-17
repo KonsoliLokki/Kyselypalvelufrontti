@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Surveys from './components/Surveys';
 import ProtoSurvey from './components/ProtoSurvey';
 import AppBar from '@material-ui/core/AppBar';
@@ -55,8 +55,11 @@ function App() {
           <Route path="/prototyyppi">
             <ProtoSurvey />
           </Route>
-          <Route path="/">
+          <Route path="/:urlId">
             <Surveys />
+          </Route>
+          <Route path="/">
+            <h3>VIRHE: URL:n pitää sisältää kyselyn ID</h3>
           </Route>
         </Switch>
       </Router>

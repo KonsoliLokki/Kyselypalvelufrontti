@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
+import { useParams } from "react-router-dom";
 
 function Surveys() {
 
@@ -22,7 +23,8 @@ function Surveys() {
   const [isShown, setIsShown] = useState(false)
 
   // Fetch options
-  const survey_id = '1';
+  let { urlId } = useParams();
+  const survey_id = urlId;
   const url = `https://survey-task.herokuapp.com/surveys/${survey_id}`
 
   // Get survey
