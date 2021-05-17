@@ -48,12 +48,17 @@ function App() {
           </Toolbar>
         </AppBar>
 
-        <div className="page-content">
-          {value === 'survey' && <Surveys />}
-          {value === 'prototype' && <ProtoSurvey />}
-          {value === 'report' && <Report />}
-        </div>
-
+        <Switch>
+          <Route path="/raportti">
+            <Report />
+          </Route>
+          <Route path="/prototyyppi">
+            <ProtoSurvey />
+          </Route>
+          <Route path="/">
+            <Surveys />
+          </Route>
+        </Switch>
       </Router>
     </div>
   );
