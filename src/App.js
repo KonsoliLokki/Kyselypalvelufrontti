@@ -24,7 +24,7 @@ function App() {
             <Typography variant="h6">
               Kyselypalvelu
           </Typography>
-            <nav>
+            <nav className="nav">
               <ul>
                 <li>
                   <Link to="/">Kysely</Link>
