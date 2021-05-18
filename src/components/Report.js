@@ -58,15 +58,15 @@ function Report() {
 
       <h1>{survey.name} kyselyn tulosraportti</h1>
 
-      {survey.questions.map((q, index) => {
+      {survey.questions.map((q) => {
         return (
           <div key={q.questionId} >
 
             <h2>Kysymys: {q.quetext}</h2>
-            {answers.map((a, index) => {
+            {answers.map((a) => {
               if (q.questionId === a.question.questionId)
                 return (
-                  <div>
+                  <div key={a.answerId}>
                     <ul>
                       <li>{a.ansText}</li>
                     </ul>
