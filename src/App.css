@@ -1,5 +1,12 @@
+@import url('https://necolas.github.io/normalize.css/8.0.1/normalize.css');
+
+* {
+  box-sizing: border-box;
+}
+
 .page-content {
-  margin: 50px;
+  max-width: 50%;
+  margin: 75px auto;
 }
 
 .links {
@@ -15,6 +22,11 @@ select {
 input[type='checkbox'],
 input[type='radio'] {
   margin: 10px 10px 0px 5px;
+}
+
+input[type='text'] {
+  margin-top: 5px;
+  width: 100%;
 }
 
 .nav ul {

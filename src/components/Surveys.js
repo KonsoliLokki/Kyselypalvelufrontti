@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { useParams } from "react-router-dom";
 import Snackbar from '@material-ui/core/Snackbar';
+import '../Surveys.css';
 
 function Surveys() {
 
@@ -31,11 +32,15 @@ function Surveys() {
 
   const openSnackBar = () => {
     setOpen(true);
-}
+  }
 
   const closeSnackBar = () => {
     setOpen(false);
   }
+
+  useEffect(() => {
+    fetch_url();
+  }, []);
 
   // Fetch options
   let { urlId } = useParams();
@@ -70,7 +75,7 @@ function Surveys() {
     setRadioValue(e.target.value)
     let newArr = [...answers]; // copying the old datas array
     newArr[index] = { [e.target.name]: e.target.value, question: { questionId: questionId } }
-    
+
     setAnswers(newArr)
   }
 
@@ -109,58 +114,57 @@ function Surveys() {
 
   return (
     <div>
-
-      <Button onClick={() => fetch_url()} variant="contained" color="primary">
-        Hae kysely
-      </Button>
-
-      <h1>{survey.name}</h1>
+      <h1 className="survey-header">{survey.name}</h1>
 
       { // Map questions
         survey.questions.map((question, index) => {
           return (
-            <div key={question.questionId}>
+            <div key={question.questionId} className="question-container">
 
-              <p>Kysymys: {question.quetext}
-                <span style={{ color: 'red' }} >{question.required ? '*' : ''}</span>
-              </p>
+              <div className="question-header">
+                <h4>Kysymys: {question.quetext}
+                  <span style={{ color: 'red' }} >{question.required ? '*' : ''}</span>
+                </h4>
+              </div>
 
-              { // Display text input
-                question.questiontype.typename === 'text' &&
+              <div className="question-input">
+                { // Display text input
+                  question.questiontype.typename === 'text' &&
 
-                <form>
-                  <input
-                    type="text"
-                    name="ansText"
-                    value={answers.ansText}
-                    onChange={(e) => handleTextChange(e, question.questionId, index)}
-                  />
-                </form>
-              }
+                  <form>
+                    <input
+                      type="text"
+                      name="ansText"
+                      value={answers.ansText}
+                      onChange={(e) => handleTextChange(e, question.questionId, index)}
+                    />
+                  </form>
+                }
 
-              { // Display radio input
-                question.questiontype.typename === 'radio' &&
+                { // Display radio input
+                  question.questiontype.typename === 'radio' &&
 
-                <form>
-                  { // Map question choices
-                    question.choices.map((choice) => {
-                      return (
-                        <div key={choice.choiceId}>
-                          <label >
-                            <input
-                              type="radio"
-                              value={choice.choiceText}
-                              name="ansText"
-                              onChange={(e) => handleRadioChange(e, question.questionId, index)}
-                            />
-                            {choice.choiceText}
-                          </label>
-                        </div>
-                      )
-                    })
-                  }
-                </form>
-              }
+                  <form>
+                    { // Map question choices
+                      question.choices.map((choice) => {
+                        return (
+                          <div key={choice.choiceId}>
+                            <label >
+                              <input
+                                type="radio"
+                                value={choice.choiceText}
+                                name="ansText"
+                                onChange={(e) => handleRadioChange(e, question.questionId, index)}
+                              />
+                              {choice.choiceText}
+                            </label>
+                          </div>
+                        )
+                      })
+                    }
+                  </form>
+                }
+              </div>
             </div>
           )
         })
@@ -170,17 +174,18 @@ function Surveys() {
         onClick={sendAnswers}
         variant="contained"
         color="secondary"
-        style={{ marginTop: 30, display: isShown ? 'block' : 'none' }}
+        style={{ display: isShown ? 'block' : 'none' }}
+        className="send-button"
       >
         Lähetä vastaukset
       </Button>
       <Snackbar
-            open={open}
-            autoHideDuration={10000}
-            onClose={closeSnackBar}
-            message={msg}
-            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        />
+        open={open}
+        autoHideDuration={10000}
+        onClose={closeSnackBar}
+        message={msg}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      />
     </div>
   )
 }
