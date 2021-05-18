@@ -27,13 +27,13 @@ function App() {
             <nav className="nav">
               <ul>
                 <li>
-                  <Link to="/">Kysely</Link>
+                  <Link to="/1">Kysely</Link>
                 </li>
                 <li>
                   <Link to="/prototyyppi">Prototyyppi</Link>
                 </li>
                 <li>
-                  <Link to="/raportti">Raportti</Link>
+                  <Link to="/raportti/1">Raportti</Link>
                 </li>
               </ul>
             </nav>
