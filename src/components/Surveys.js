@@ -53,8 +53,12 @@ function Surveys() {
     setAnswers(newArr)
   }
 
-  const handleRadioChange = (e) => {
+  const handleRadioChange = (e, questionId, index) => {
     setRadioValue(e.target.value)
+    let newArr = [...answers]; // copying the old datas array
+    newArr[index] = { [e.target.name]: e.target.value, question: { questionId: questionId } }
+    
+    setAnswers(newArr)
   }
 
   const sendAnswers = () => {
@@ -113,7 +117,7 @@ function Surveys() {
                   <input
                     type="text"
                     name="ansText"
-                    value={answers.ansText}
+                    
                     onChange={(e) => handleTextChange(e, question.questionId, index)}
                   />
                 </form>
@@ -131,8 +135,8 @@ function Surveys() {
                             <input
                               type="radio"
                               value={choice.choiceText}
-                              checked={radioValue === choice.choiceText}
-                              onChange={(e) => handleRadioChange(e)}
+                              name="ansText"
+                              onChange={(e) => handleRadioChange(e, question.questionId, index)}
                             />
                             {choice.choiceText}
                           </label>
