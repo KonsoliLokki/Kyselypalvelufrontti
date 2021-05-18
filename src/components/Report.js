@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
+import QuestionTypeBanner from "./QuestionTypeBanner"
 
 function Report() {
 
@@ -61,8 +62,7 @@ function Report() {
       {survey.questions.map((q) => {
         return (
           <div key={q.questionId} >
-
-            <h2>Kysymys: {q.quetext}</h2>
+            <h3>{q.quetext}<QuestionTypeBanner type={q.questiontype.typename} /></h3>
             {answers.map((a) => {
               if (q.questionId === a.question.questionId)
                 return (
