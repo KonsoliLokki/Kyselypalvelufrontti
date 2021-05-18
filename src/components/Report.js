@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 function Report() {
 
@@ -18,7 +19,8 @@ function Report() {
     }
   }]);
 
-  const survey_id = '1';
+  let { urlId } = useParams();
+  const survey_id = urlId;
   const surveyUrl = `https://survey-task.herokuapp.com/surveys/${survey_id}`;
   const answersUrl = `https://survey-task.herokuapp.com/answers/`;
 
