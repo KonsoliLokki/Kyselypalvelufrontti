@@ -42,8 +42,11 @@ function App() {
 
         <div className="page-content">
           <Switch>
-            <Route path="/raportti">
+            <Route path="/raportti/:urlId">
               <Report />
+            </Route>
+            <Route path="/raportti/">
+              <h3>VIRHE: URL:n pitää sisältää kyselyn ID</h3>
             </Route>
             <Route path="/prototyyppi">
               <ProtoSurvey />
