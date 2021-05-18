@@ -122,7 +122,7 @@ function Surveys() {
             <div key={question.questionId} className="question-container">
 
               <div className="question-header">
-                <h4>Kysymys: {question.quetext}
+                <h4>{question.quetext}
                   <span style={{ color: 'red' }} >{question.required ? '*' : ''}</span>
                 </h4>
               </div>
