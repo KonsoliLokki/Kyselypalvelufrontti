@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { useParams } from "react-router-dom";
+import Snackbar from '@material-ui/core/Snackbar';
 
 function Surveys() {
 
@@ -23,7 +24,18 @@ function Surveys() {
   const [radioValue, setRadioValue] = useState('')
 
   // Set 'send answers' button visibility
-  const [isShown, setIsShown] = useState(false)
+  const [isShown, setIsShown] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const [msg, setMsg] = useState('');
+
+  const openSnackBar = () => {
+    setOpen(true);
+}
+
+  const closeSnackBar = () => {
+    setOpen(false);
+  }
 
   // Fetch options
   let { urlId } = useParams();
@@ -73,6 +85,8 @@ function Surveys() {
       .then(response => {
         if (response.ok) {
           console.log('Success: Data sent')
+          setMsg('Kiitos, vastaukset lähetetty!');
+          openSnackBar();
         }
         else {
           console.log('Error: Data sending failed')
@@ -117,7 +131,7 @@ function Surveys() {
                   <input
                     type="text"
                     name="ansText"
-                    
+                    value={answers.ansText}
                     onChange={(e) => handleTextChange(e, question.questionId, index)}
                   />
                 </form>
@@ -159,7 +173,12 @@ function Surveys() {
       >
         Lähetä vastaukset
       </Button>
-
+      <Snackbar
+            open={open}
+            autoHideDuration={10000}
+            onClose={closeSnackBar}
+            message={msg}
+        />
     </div>
   )
 }
