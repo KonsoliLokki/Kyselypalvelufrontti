@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import QuestionTypeBanner from "./QuestionTypeBanner"
 
+import '../Surveys.css';
+
 function Report() {
 
   const [survey, setSurvey] = useState({
@@ -57,12 +59,15 @@ function Report() {
   return (
     <div>
 
-      <h1>{survey.name} kyselyn tulosraportti</h1>
+      <h1 className="page-header">Kyselyn tulosraportti</h1>
+      <h1 className="survey-header">{survey.name}</h1>
 
       {survey.questions.map((q) => {
         return (
-          <div key={q.questionId} >
-            <h3>{q.quetext}<QuestionTypeBanner type={q.questiontype.typename} /></h3>
+          <div key={q.questionId} className="question-container">
+            <div className="question-header">
+              <h4>{q.quetext}<QuestionTypeBanner type={q.questiontype.typename} /></h4>
+            </div>
             {answers.map((a) => {
               if (q.questionId === a.question.questionId)
                 return (
