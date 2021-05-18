@@ -65,6 +65,7 @@ function Surveys() {
     setAnswers(newArr)
   }
 
+  // Handle input values in answer radiobutton fields
   const handleRadioChange = (e, questionId, index) => {
     setRadioValue(e.target.value)
     let newArr = [...answers]; // copying the old datas array
@@ -178,6 +179,7 @@ function Surveys() {
             autoHideDuration={10000}
             onClose={closeSnackBar}
             message={msg}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         />
     </div>
   )
