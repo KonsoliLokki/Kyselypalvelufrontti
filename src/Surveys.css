@@ -2,7 +2,7 @@
   padding: 30px 25px;
   border: solid #dbdbdb 1px;
   border-radius: 15px;
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
 }
 
 .question-container:not(:last-of-type) {
